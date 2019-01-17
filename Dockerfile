@@ -4,7 +4,8 @@ FROM dealii/dealii:v8.5.1-gcc-mpi-fulldepscandi-debugrelease
 LABEL maintainer <dan.sandiford@utas.edu.au>
 
 # Build aspect
-RUN git clone https://github.com/geodynamics/aspect.git ./aspect && \
+RUN git clone https://github.com/anne-glerum/aspect.git ./aspect && \
+    cd aspect && git checkout obliqe_mor && \
     mkdir aspect/build-release && \
     cd aspect/build-release && \
     cmake -DCMAKE_BUILD_TYPE=Release \
