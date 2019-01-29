@@ -1,5 +1,4 @@
-FROM dealii/dealii:v8.5.1-gcc-mpi-fulldepscandi-debugrelease
-
+FROM tjhei/dealii:v9.0.1-full-v9.0.1-r4
 
 LABEL maintainer <dan.sandiford@utas.edu.au>
 
