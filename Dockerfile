@@ -1,20 +1,30 @@
-FROM dealii/dealii:v8.5.1-gcc-mpi-fulldepscandi-debugrelease
+#-#-#FROM tjhei/dealii:v9.0.1-full-v9.0.1-r4
+FROM alexisespinosa/dealii:v9.1.0-pre-gcc-mpichpawsey-fulldepsmanual
 
+#-#-#LABEL maintainer <dan.sandiford@utas.edu.au>
 
-LABEL maintainer <dan.sandiford@utas.edu.au>
+ARG SOFTDIR=/software
+WORKDIR $SOFTDIR
 
 # Build aspect
 RUN git clone https://github.com/anne-glerum/aspect.git ./aspect && \
-    cd aspect && git checkout obliqe_mor && \
-    mkdir build-release && \
-    cd build-release && \
+    mkdir aspect/build-release && \
+    cd aspect/build-release && \
     cmake -DCMAKE_BUILD_TYPE=Release \
-          -DDEAL_II_DIR=$HOME/deal.II-install \
+#-#-#          -DDEAL_II_DIR=$HOME/deal.II-install \
+#::AEG::Installing in $SOFTDIR instead of $HOME
+          -DDEAL_II_DIR=$SOFTDIR/deal.II-install \
           .. && \
     make -j2 && \
     mv aspect ../aspect && \
     make clean
 
-ENV ASPECT_DIR /home/dealii/aspect/build-debug
 
-WORKDIR /home/dealii/aspect
+
+#-#-#ENV ASPECT_DIR /home/dealii/aspect/build-debug
+#::AEG:: Same thing
+ENV ASPECT_DIR $SOFTDIR/aspect/build-debug
+
+ENV PATH "$PATH:/software/aspect"
+
+WORKDIR /home/models
