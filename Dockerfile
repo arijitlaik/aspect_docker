@@ -7,9 +7,10 @@ ARG SOFTDIR=/software
 WORKDIR $SOFTDIR
 
 # Build aspect
-RUN git clone https://github.com/anne-glerum/aspect.git ./aspect && \
-    mkdir aspect/build-release && \
-    cd aspect/build-release && \
+RUN git clone https://github.com/dansand/aspect.git ./aspect && \
+    cd aspect && git checkout obliqe_mor && \
+    mkdir build-release && \
+    cd build-release && \
     cmake -DCMAKE_BUILD_TYPE=Release \
 #-#-#          -DDEAL_II_DIR=$HOME/deal.II-install \
 #::AEG::Installing in $SOFTDIR instead of $HOME
