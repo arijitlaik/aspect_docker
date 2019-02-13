@@ -17,7 +17,7 @@ RUN git clone https://github.com/dansand/aspect.git ./aspect && \
 #::AEG::Installing in $SOFTDIR instead of $HOME
           -DDEAL_II_DIR=$SOFTDIR/deal.II-install \
           .. && \
-    make -j2 && \
+    make -j4 && \
     mv aspect ../aspect && \
     make clean
 
