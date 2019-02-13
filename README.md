@@ -1,1 +1,1 @@
-# aspect_docker
+# Aspect Docker images based on MPICH for shifter
