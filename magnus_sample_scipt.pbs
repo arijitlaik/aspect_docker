@@ -1,0 +1,29 @@
+#!/bin/bash -l
+
+#SBATCH --nodes=1
+#SBATCH --time=01:10:00
+#SBATCH --account=pawsey0303   #seaways account
+#SBATCH --export=NONE
+#SBATCH --output=myjob-%j.log
+#SBATCH --error=myjob-%j.err
+
+
+module load shifter
+
+#MOUNTING
+#By default, Shifter mounts the following directories into a container:
+#/scratch
+#/group
+#/astro (on Galaxy)
+#/pawsey
+
+#Users can specify additional mount-points using the --mount option in Shifter:
+#srun --export=all shifter run --mount=type=bind,source=$HOME,destination=/home debian:latest ls -l /home
+
+#MPI
+#and pass shifter the --mpi run option
+#srun --export=all -n 48 shifter run --mpi my_repo/image mpi_app.x -args
+
+
+#Run the oblique MOR example (updated from Anne and Simon's model)
+srun --export=all -n 24 shifter run --mpi dansand/aspect:oblique_mor aspect  MOR_simple_update.prm
