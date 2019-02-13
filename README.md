@@ -2,9 +2,7 @@
 
 ### Overview
 
-This repository contains Dockerfiles for ASPECT using an MPICH-based dealii.
-
-This allows ASPECT to run via shifter on HPC systems (specifically PAWSEY/Magnus).  The MPICH-based dealii image is built on the dockerfiles available here:  https://github.com/dansand/docker-files.git
+This repository contains Dockerfiles for [ASPECT](https://aspect.geodynamics.org/) using an MPICH-based [dealii](https://www.dealii.org/) image. This allows ASPECT to run via [shifter](https://github.com/NERSC/shifter) on HPC systems (e.g. PAWSEY/Magnus). The MPICH-based dealii image is built on the dockerfiles available here:  https://github.com/dansand/docker-files.git
 
 ### Docker
 
@@ -34,13 +32,13 @@ Run a command in a new container
 
 The `bash` command at the end of the Docker run is optional, as this is also the default command specified in the image.
 
-The Aspect binary is in the container PATH, so you will be able to run a model using something like. Assuming the container was launched from your local copy of this github repository, you could run
+The Aspect binary is in the container PATH.  Assuming the container was launched from your local copy of this github repository, you could run:
 
 `aspect test_model/convection-box.prm`
 
 Or to run on N processors:
 
-`mpirun -np N test_model/convection-box.prm`
+`mpirun -np N aspect test_model/convection-box.prm`
 
 ### Shifter (HPC)
 

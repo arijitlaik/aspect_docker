@@ -1,7 +1,7 @@
 #!/bin/bash -l
 
 #SBATCH --nodes=1
-#SBATCH --time=01:10:00
+#SBATCH --time=00:10:00
 #SBATCH --account=pawsey0303   #seaways account
 #SBATCH --export=NONE
 #SBATCH --output=myjob-%j.log
@@ -25,5 +25,5 @@ module load shifter
 #srun --export=all -n 48 shifter run --mpi my_repo/image mpi_app.x -args
 
 
-#Run the oblique MOR example (updated from Anne and Simon's model)
-srun --export=all -n 24 shifter run --mpi dansand/aspect:oblique_mor aspect  MOR_simple_update.prm
+#Run the 2D convection cookbook using 8 Procs
+srun --export=all -n 8 shifter run --mpi dansand/aspect aspect test_model/convection-box.prm
