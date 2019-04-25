@@ -1,6 +1,5 @@
 #-#-#FROM tjhei/dealii:v9.0.1-full-v9.0.1-r4
-#FROM alexisespinosa/dealii:v9.1.0-pre-gcc-mpichpawsey-fulldepsmanual
-FROM dansand/dealii:v9.1.0-pre-gcc-mpichpawsey-fulldepsmanual
+FROM alexisespinosa/dealii:v9.1.0-pre-gcc-mpichpawsey-fulldepsmanual
 
 #-#-#LABEL maintainer <dan.sandiford@utas.edu.au>
 
@@ -8,15 +7,16 @@ ARG SOFTDIR=/software
 WORKDIR $SOFTDIR
 
 # Build aspect
-RUN git clone https://github.com/geodynamics/aspect.git ./aspect && \
-    mkdir aspect/build-release && \
-    cd aspect/build-release && \
+RUN git clone https://github.com/dansand/aspect.git ./aspect && \
+    cd aspect && git checkout vp_phase_changes && \
+    mkdir build-release && \
+    cd build-release && \
     cmake -DCMAKE_BUILD_TYPE=Release \
 #-#-#          -DDEAL_II_DIR=$HOME/deal.II-install \
 #::AEG::Installing in $SOFTDIR instead of $HOME
           -DDEAL_II_DIR=$SOFTDIR/deal.II-install \
           .. && \
-    make -j4 && \
+    make -j2 && \
     mv aspect ../aspect && \
     make clean
 
