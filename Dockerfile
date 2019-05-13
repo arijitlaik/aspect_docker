@@ -8,7 +8,7 @@ WORKDIR $SOFTDIR
 
 # Build aspect
 RUN git clone https://github.com/dansand/aspect.git ./aspect && \
-    cd aspect && git checkout vp_phase_changes && \
+    cd aspect && git checkout dev && \
     mkdir build-release && \
     cd build-release && \
     cmake -DCMAKE_BUILD_TYPE=Release \
