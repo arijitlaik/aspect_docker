@@ -1,5 +1,6 @@
 #-#-#FROM tjhei/dealii:v9.0.1-full-v9.0.1-r4
-FROM alexisespinosa/dealii:v9.1.0-pre-gcc-mpichpawsey-fulldepsmanual
+#FROM alexisespinosa/dealii:v9.1.0-pre-gcc-mpichpawsey-fulldepsmanual
+FROM dansand/dealii:v9.1.0-pre-gcc-mpichpawsey-fulldepsmanual
 
 #-#-#LABEL maintainer <dan.sandiford@utas.edu.au>
 
@@ -16,7 +17,7 @@ RUN git clone https://github.com/dansand/aspect.git ./aspect && \
 #::AEG::Installing in $SOFTDIR instead of $HOME
           -DDEAL_II_DIR=$SOFTDIR/deal.II-install \
           .. && \
-    make -j2 && \
+    make -j4 && \
     mv aspect ../aspect && \
     make clean
 
