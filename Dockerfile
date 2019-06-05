@@ -8,8 +8,8 @@ ARG SOFTDIR=/software
 WORKDIR $SOFTDIR
 
 # Build aspect
-RUN git clone https://github.com/dansand/aspect.git ./aspect && \
-    cd aspect && git checkout dev && \
+RUN git clone https://github.com/geodynamics/aspect.git ./aspect && \
+    cd aspect && git checkout master && \
     mkdir build-release && \
     cd build-release && \
     cmake -DCMAKE_BUILD_TYPE=Release \
